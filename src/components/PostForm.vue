@@ -9,6 +9,8 @@
     <!-- <my-input v-model="post.body" type="text" placeholder="описание" /> -->
     <MyInput v-focus v-model="post.title" type="text" placeholder="название" />
     <MyInput v-model="post.body" type="text" placeholder="описание" />
+    <MyInput v-model="post.price" type="number" placeholder="цена" />
+    <MyInput v-model="post.year" type="number" placeholder="год" />
 
     <MyButton class="create" @click="createPost">Создать товар</MyButton>
   </form>
@@ -35,6 +37,8 @@ export default {
       this.post = {
         title: '',
         body: '',
+        year: 0,
+        price: 0,
       };
     },
   },

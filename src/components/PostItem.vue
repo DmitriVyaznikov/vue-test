@@ -3,7 +3,7 @@
     <div class="post">
       <div class="post__content">
         <div><strong>Название</strong>: {{ post.title }}</div>
-        <div><strong>Описание</strong>: {{ post.body }}</div>
+        <!-- <div><strong>Описание</strong>: {{ post.body }}</div> -->
         <div><strong>Цена</strong>: {{ post.price }} $</div>
         <div><strong>Год</strong>: {{ post.year }}</div>
       </div>

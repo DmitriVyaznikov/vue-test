@@ -19,7 +19,7 @@ export default {
 
 <template>
   <select :value="modelValue" @change="changeOption">
-    <option disabled value="">Выберите из списка</option>
+    <option disabled value="">Сортировать</option>
     <option :value="option.value" v-for="option of options" :key="option.value">
       {{ option.name }}
     </option>

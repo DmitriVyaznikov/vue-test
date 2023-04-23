@@ -44,6 +44,7 @@ import PostList from '@/components/PostList.vue';
 import PostForm from '@/components/PostForm.vue';
 import MyDialogue from '@/components/UI/MyDialogue.vue';
 import MyButton from '@/components/UI/MyButton.vue';
+
 // import axios from 'axios';
 import MySelect from '@/components/UI/MySelect.vue';
 import MyInput from '@/components/UI/MyInput.vue';
@@ -69,7 +70,8 @@ export default {
     const searchQuery = ref('');
     const sortOptions = [
       { value: 'title', name: 'По названию' },
-      { value: 'body', name: 'По содержимому' },
+      { value: 'price', name: 'По цене' },
+      { value: 'year', name: 'По году' },
     ];
 
     const loadMorePosts = () => postStore.loadMorePosts();
@@ -107,9 +109,17 @@ export default {
     };
 
     const sortedPosts = computed(() => {
-      return [...postStore.posts].sort((post1, post2) =>
-        post1[selectedSort.value]?.localeCompare(post2[selectedSort.value]),
-      );
+      return [...postStore.posts].sort((post1, post2) => {
+        if (selectedSort.value === 'year') {
+          return post1.year - post2.year;
+        } else if (selectedSort.value === 'price') {
+          return post1.price - post2.price;
+        } else {
+          return post1[selectedSort.value]?.localeCompare(
+            post2[selectedSort.value],
+          );
+        }
+      });
     });
 
     const sortedAndSearchedPosts = computed(() => {
