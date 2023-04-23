@@ -17,7 +17,7 @@ export default {
   color: #b65454;
   border: 1px solid #b65454;
 }
-.change {
+.open {
   margin-left: 10px;
 }
 

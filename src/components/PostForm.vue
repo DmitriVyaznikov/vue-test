@@ -7,7 +7,7 @@
     <!-- v-bind:value="post.body"
       @input="post.body = $event.target.value" -->
     <!-- <my-input v-model="post.body" type="text" placeholder="описание" /> -->
-    <MyInput v-model="post.title" type="text" placeholder="название" />
+    <MyInput v-focus v-model="post.title" type="text" placeholder="название" />
     <MyInput v-model="post.body" type="text" placeholder="описание" />
 
     <MyButton class="create" @click="createPost">Создать пост</MyButton>

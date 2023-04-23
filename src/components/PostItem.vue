@@ -7,7 +7,9 @@
       </div>
       <div class="post__btns">
         <MyButton @click="$emit('remove', post)">Удалить</MyButton>
-        <MyButton class="change">Изменить</MyButton>
+        <MyButton class="open" @click="$router.push(`/posts/${post.id}`)"
+          >Открыть</MyButton
+        >
       </div>
     </div>
   </div>
@@ -39,5 +41,8 @@ export default {
   max-width: calc(100% - 250px);
   overflow: hidden;
   text-overflow: ellipsis;
+}
+.post__btns {
+  display: flex;
 }
 </style>
