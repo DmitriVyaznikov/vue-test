@@ -2,6 +2,7 @@ import MainPage from '../pages/MainPage.vue';
 import PostPage from '@/pages/PostPage.vue';
 import PostIdPage from '@/pages/PostIdPage.vue';
 import About from '@/pages/About.vue';
+import GraphicItem from '@/pages/GraphicItem.vue';
 
 import { createRouter, createWebHistory } from 'vue-router';
 
@@ -13,6 +14,7 @@ const routes = [
   {
     path: '/posts',
     component: PostPage,
+    meta: { state: 'postState' },
   },
   {
     path: '/about',
@@ -21,6 +23,10 @@ const routes = [
   {
     path: '/posts/:id',
     component: PostIdPage,
+  },
+  {
+    path: '/graphic',
+    component: GraphicItem,
   },
 ];
 

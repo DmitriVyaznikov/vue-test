@@ -5,9 +5,9 @@ export default {};
 <template>
   <div>
     <h1>Добро пожаловать!</h1>
-    <RouterLink to="/">Главная</RouterLink>
+    <!-- <RouterLink to="/">Главная</RouterLink>
     <RouterLink to="/posts">Посты</RouterLink>
-    <RouterLink to="/about">О проекте</RouterLink>
+    <RouterLink to="/about">О проекте</RouterLink> -->
   </div>
 </template>
 

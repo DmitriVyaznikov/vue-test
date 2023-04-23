@@ -3,8 +3,12 @@ import App from './App.vue';
 import components from './components/UI';
 import router from './router/router';
 import directives from './directives';
+import { createPinia } from 'pinia';
+import piniaPersist from 'pinia-plugin-persist';
 
 const app = createApp(App);
+const pinia = createPinia();
+pinia.use(piniaPersist);
 
 components.forEach((component) => {
   app.component(component.name, component);
@@ -14,4 +18,4 @@ directives.forEach((directive) => {
   app.directive(directive.name, directive);
 });
 
-app.use(router).mount('#app');
+app.use(router).use(pinia).mount('#app');

@@ -1,8 +1,8 @@
 <template>
   <div class="navbar">
-    <div @click="$router.push('/')">Товары и посты</div>
+    <div @click="$router.push('/')">Главная</div>
     <div class="nav__btns">
-      <MyButton @click="$router.push('/posts')">Посты</MyButton>
+      <MyButton @click="$router.push('/posts')">Товары</MyButton>
       <MyButton class="about" @click="$router.push('/about')"
         >О приложении</MyButton
       >
