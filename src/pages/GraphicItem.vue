@@ -60,7 +60,7 @@ export default {
       });
 
       this.chartData = {
-        labels: chartData.map((item) => item.year),
+        labels: [...chartData.map((item) => item.year)].sort((a, b) => a - b),
         datasets: [
           {
             label: 'Средняя цена всех товаров за год',
