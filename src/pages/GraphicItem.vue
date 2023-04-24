@@ -1,5 +1,6 @@
 <template>
   <div class="container">
+    <pre>{{chartData}}</pre>
     <LineChart v-if="loaded" :data="chartData" />
   </div>
 </template>
@@ -35,6 +36,11 @@ export default {
     loaded: false,
     chartData: null,
   }),
+  methods: {
+    middleValue(array) {
+      return +Number(array.reduce((total, price) => total + price, 0) / array.length)
+    }
+  },
   async mounted() {
     this.loaded = false;
 
@@ -43,29 +49,28 @@ export default {
       await store.fetchItems();
       const items = store.posts;
 
-      const chartData = items.reduce((result, item) => {
-        const yearIndex = result.findIndex((obj) => obj.year === item.year);
-        if (yearIndex === -1) {
-          result.push({ year: item.year, prices: [item.price] });
+      const chartData = items.reduce((acc, item) => {
+        const objYear = acc[item.year]
+        if(!objYear) {
+          acc[item.year] = { year: item.year, prices: [item.price] }
         } else {
-          result[yearIndex].prices.push(item.price);
+          objYear.prices.push(item.price)
         }
-        return result;
-      }, []);
+        return acc
+      }, {});
 
-      chartData.forEach((item) => {
-        const sum = item.prices.reduce((total, price) => total + price, 0);
-        item.averagePrice = sum / item.prices.length;
-        delete item.prices;
-      });
+      let itemsArray = Object.values(chartData).map((item) => ({
+        year: item.year,
+        averagePrice: this.middleValue(item.prices).toFixed(2)
+      }))
 
       this.chartData = {
-        labels: [...chartData.map((item) => item.year)].sort((a, b) => a - b),
+        labels: Object.keys(chartData),
         datasets: [
           {
             label: 'Средняя цена всех товаров за год',
             backgroundColor: '#f87979',
-            data: chartData.map((item) => item.averagePrice),
+            data: itemsArray.map((item) => item.averagePrice),
           },
         ],
       };
